@@ -142,17 +142,16 @@ function Editor:ask(callback, question)
         local isLeft = button == "left"
         local isUp = state == "up"
         if isLeft and isUp then
+            if getElementType(source) ~= "gui-button" then
+                return false
+            end
             if source == self.form_ok then
                 local input = guiGetText(self.form_input)
                 callback(input)
-                guiSetText(self.form_input, "")
-                guiSetVisible(self.form, false)
-                removeEventHandler("onClientGUIClick", self.form, self.form_callback)
-            elseif source == self.form_cancel then
-                guiSetText(self.form_input, "")
-                guiSetVisible(self.form, false)
-                removeEventHandler("onClientGUIClick", self.form, self.form_callback)
             end
+            guiSetText(self.form_input, "")
+            guiSetVisible(self.form, false)
+            removeEventHandler("onClientGUIClick", self.form, self.form_callback)
         end
     end
     addEventHandler("onClientGUIClick", self.form, self.form_callback)
