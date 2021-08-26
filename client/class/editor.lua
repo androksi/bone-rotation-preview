@@ -176,9 +176,11 @@ function Editor:addBone(boneId)
         return false
     end
 
+    local yaw, pitch, roll = getElementBoneRotation(localPlayer, boneId)
+
     local row = guiGridListAddRow(self.bone_list)
     guiGridListSetItemText(self.bone_list, row, 1, tostring(boneId), false, false)
-    self.bones[boneId] = {yaw = 0, pitch = 0, roll = 0, in_edit = false}
+    self.bones[boneId] = {yaw = yaw, pitch = pitch, roll = roll}
 end
 
 function Editor:removeBone(boneId)
