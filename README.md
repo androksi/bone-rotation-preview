@@ -1,8 +1,11 @@
 # Bone Rotation Preview
 An easy tool to get the rotation of the character bones.
 
-## How to use
+## How to open the window
 Basically, all you need to do is start the resource on your server. Once running, type `/pbone` to toggle the window.
+
+## Usage
+Add a bone to the list, select it, then slide the scrollbars. You can have multiples bones at once.
 
 ## Features
 - Add bone to list
