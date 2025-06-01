@@ -15,6 +15,16 @@ local boneIDs = {
     52, 53, 54, 201, 301, 302
 }
 
+local function centerAngle(angle)
+    angle = angle % 360
+
+    if angle > 180 then
+        angle = angle - 360
+    end
+
+    return angle
+end
+
 function Editor.create()
     local data = {
         bones = {},
@@ -218,4 +228,20 @@ function Editor:selectBone(boneId)
     self.current_bone = boneId
     guiSetVisible(self.remove_bone, type(boneId) == "number" and true or false)
     guiSetVisible(self.preview_box, type(boneId) == "number" and true or false)
+end
+
+function Editor:getRawBoneAngles(mode)
+    local list = {}
+
+    for boneId, data in pairs(self.bones) do
+        local yaw, pitch, roll = data.yaw, data.pitch, data.roll
+
+        if mode == "center" then
+            yaw, pitch, roll = centerAngle(yaw), centerAngle(pitch), centerAngle(roll)
+        end
+
+        list[boneId] = { yaw, pitch, roll }
+    end
+
+    return inspect(list)
 end
