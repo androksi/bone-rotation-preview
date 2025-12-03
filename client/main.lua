@@ -16,6 +16,6 @@ addCommandHandler("copybones", function(_, mode)
         return false
     end
 
-    setClipboard(Interface:getListRaw(mode))
+    setClipboard(Interface:getRawBoneAngles(mode))
     outputChatBox("Bones copied to clipboard.", 0, 255, 0)
 end)
